@@ -63,18 +63,7 @@ html[dir="ltr"] .side-menu{left:0;transform:translateX(-100%)}
 
 /* Banner */
 .banner-section{overflow:hidden;position:relative}
-.banner-slider{display:flex;transition:transform .5s ease;width:200%}
-.banner-slide{width:50%;flex-shrink:0}
-.banner-slide img{width:100%;display:block;height:auto}
-.banner-dots{
-  display:flex;justify-content:center;gap:8px;
-  padding:12px 0;background:#fff;
-}
-.banner-dot{
-  width:10px;height:10px;border-radius:50%;
-  background:#ccc;cursor:pointer;transition:.2s;
-}
-.banner-dot.active{background:#c8102e;transform:scale(1.2)}
+.banner-section img{width:100%;display:block;height:auto}
 
 /* CTA Button */
 .cta-section{padding:24px 20px;text-align:center;background:#fff}
@@ -173,14 +162,7 @@ html[dir="ltr"] .info-card{border-right:none;border-left:4px solid #c8102e}
 
 <!-- Banner -->
 <section class="banner-section">
-  <div class="banner-slider" id="bannerSlider">
-    <div class="banner-slide"><img src="images/banner-map.jpg" alt="Etihad Rail Map"></div>
-    <div class="banner-slide"><img src="images/banner-times.jpg" alt="Etihad Rail Journey Times"></div>
-  </div>
-  <div class="banner-dots">
-    <div class="banner-dot active" onclick="goSlide(0)"></div>
-    <div class="banner-dot" onclick="goSlide(1)"></div>
-  </div>
+  <img src="images/banner-times.jpg" alt="Etihad Rail Journey Times">
 </section>
 
 <!-- CTA Button -->
@@ -260,9 +242,6 @@ html[dir="ltr"] .info-card{border-right:none;border-left:4px solid #c8102e}
 
 <script>
 let currentLang='ar';
-let currentSlide=0;
-let autoSlideTimer;
-
 function toggleMenu(){
   document.getElementById('menuOverlay').classList.toggle('active');
 }
@@ -278,31 +257,6 @@ function toggleLang(){
     if(txt)el.textContent=txt;
   });
 }
-
-function goSlide(n){
-  currentSlide=n;
-  document.getElementById('bannerSlider').style.transform='translateX('+(currentLang==='ar'?currentSlide*50:-(currentSlide*50))+'%)';
-  document.querySelectorAll('.banner-dot').forEach((d,i)=>d.classList.toggle('active',i===n));
-}
-
-function autoSlide(){
-  autoSlideTimer=setInterval(()=>{goSlide(currentSlide===0?1:0)},4000);
-}
-autoSlide();
-
-document.querySelector('.banner-section').addEventListener('mouseenter',()=>clearInterval(autoSlideTimer));
-document.querySelector('.banner-section').addEventListener('mouseleave',autoSlide);
-
-let touchStartX=0;
-document.querySelector('.banner-section').addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;clearInterval(autoSlideTimer)});
-document.querySelector('.banner-section').addEventListener('touchend',e=>{
-  const diff=e.changedTouches[0].clientX-touchStartX;
-  if(Math.abs(diff)>50){
-    if(currentLang==='ar'){goSlide(diff>0?0:1)}
-    else{goSlide(diff<0?0:1)}
-  }
-  autoSlide();
-});
 </script>
 </body>
 </html>
