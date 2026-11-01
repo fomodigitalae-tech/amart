@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قطارات الاتحاد - Etihad Rail</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f5f5;overflow-x:hidden}
+
+/* Header */
+.header{
+  position:sticky;top:0;z-index:100;
+  background:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.hamburger span{display:block;width:26px;height:3px;background:#333;border-radius:2px;transition:.3s}
+.header-logo{height:38px}
+.lang-toggle{
+  display:flex;align-items:center;gap:8px;
+  background:#f0f0f0;border:1px solid #ddd;border-radius:20px;
+  padding:6px 14px;cursor:pointer;
+  font-size:14px;font-weight:600;color:#333;
+  transition:.2s;
+}
+.lang-toggle:hover{background:#e4e4e4}
+.lang-toggle .flag{width:22px;height:16px;border-radius:2px;object-fit:cover}
+
+/* Side Menu */
+.menu-overlay{
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.4);z-index:200;
+  opacity:0;pointer-events:none;transition:.3s;
+}
+.menu-overlay.active{opacity:1;pointer-events:all}
+.side-menu{
+  position:fixed;top:0;z-index:201;
+  width:280px;height:100%;background:#fff;
+  box-shadow:2px 0 16px rgba(0,0,0,.15);
+  transition:transform .3s ease;
+}
+html[dir="rtl"] .side-menu{right:0;transform:translateX(100%)}
+html[dir="ltr"] .side-menu{left:0;transform:translateX(-100%)}
+.menu-overlay.active .side-menu{transform:translateX(0)}
+.side-menu-header{
+  background:linear-gradient(135deg,#c8102e,#a00d24);
+  color:#fff;padding:30px 20px;text-align:center;
+}
+.side-menu-header img{height:50px;margin-bottom:10px}
+.side-menu-header h3{font-size:16px;font-weight:500}
+.side-menu ul{list-style:none;padding:16px 0}
+.side-menu li{border-bottom:1px solid #f0f0f0}
+.side-menu li a{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 24px;color:#333;text-decoration:none;
+  font-size:15px;transition:.2s;
+}
+.side-menu li a:hover{background:#f8f8f8;color:#c8102e}
+.menu-icon{font-size:18px;width:24px;text-align:center}
+
+/* Banner */
+.banner-section{overflow:hidden;position:relative}
+.banner-slider{display:flex;transition:transform .5s ease;width:200%}
+.banner-slide{width:50%;flex-shrink:0}
+.banner-slide img{width:100%;display:block;height:auto}
+.banner-dots{
+  display:flex;justify-content:center;gap:8px;
+  padding:12px 0;background:#fff;
+}
+.banner-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:#ccc;cursor:pointer;transition:.2s;
+}
+.banner-dot.active{background:#c8102e;transform:scale(1.2)}
+
+/* CTA Button */
+.cta-section{padding:24px 20px;text-align:center;background:#fff}
+.cta-btn{
+  display:inline-block;
+  background:#c8102e;color:#fff;
+  border:none;border-radius:8px;
+  padding:16px 48px;
+  font-size:18px;font-weight:700;
+  cursor:pointer;text-decoration:none;
+  transition:.2s;
+  box-shadow:0 4px 12px rgba(200,16,46,.3);
+}
+.cta-btn:hover{background:#a00d24;transform:translateY(-2px);box-shadow:0 6px 16px rgba(200,16,46,.4)}
+.cta-btn:active{transform:translateY(0)}
+
+/* Info Section */
+.info-section{padding:24px 20px}
+.info-cards{display:flex;flex-direction:column;gap:14px;max-width:600px;margin:0 auto}
+.info-card{
+  background:#fff;border-radius:10px;padding:18px 20px;
+  display:flex;align-items:center;gap:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  border-right:4px solid #c8102e;
+}
+html[dir="ltr"] .info-card{border-right:none;border-left:4px solid #c8102e}
+.info-card .icon{font-size:28px;flex-shrink:0}
+.info-card .text h4{font-size:15px;color:#333;margin-bottom:4px}
+.info-card .text p{font-size:13px;color:#777}
+
+/* Footer */
+.footer{
+  background:#1a1a2e;color:#aaa;
+  text-align:center;padding:20px;
+  font-size:13px;margin-top:20px;
+}
+.footer span{color:#c8102e;font-weight:600}
+
+/* Mobile */
+@media(max-width:480px){
+  .cta-btn{width:100%;padding:16px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <img src="https://www.etihadrail.com/themes/frontend/assets/images/logo.svg" alt="Etihad Rail" class="header-logo"
+       onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=font-size:16px;font-weight:700;color:#333>قطارات الاتحاد</span>')">
+  <button class="lang-toggle" onclick="toggleLang()">
+    <img class="flag" src="https://flagcdn.com/w40/ae.png" alt="UAE">
+    <span class="lang-text">EN</span>
+  </button>
+</header>
+
+<!-- Side Menu -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()">
+  <nav class="side-menu" onclick="event.stopPropagation()">
+    <div class="side-menu-header">
+      <h3 class="t" data-ar="قطارات الاتحاد" data-en="Etihad Rail">قطارات الاتحاد</h3>
+    </div>
+    <ul>
+      <li><a href="#"><span class="menu-icon">🏠</span><span class="t" data-ar="الرئيسية" data-en="Home">الرئيسية</span></a></li>
+      <li><a href="#"><span class="menu-icon">🚄</span><span class="t" data-ar="الخدمات" data-en="Services">الخدمات</span></a></li>
+      <li><a href="#"><span class="menu-icon">🗺️</span><span class="t" data-ar="خريطة المسار" data-en="Route Map">خريطة المسار</span></a></li>
+      <li><a href="#"><span class="menu-icon">🎫</span><span class="t" data-ar="حجز التذاكر" data-en="Book Tickets">حجز التذاكر</span></a></li>
+      <li><a href="#"><span class="menu-icon">📞</span><span class="t" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</span></a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- Banner -->
+<section class="banner-section">
+  <div class="banner-slider" id="bannerSlider">
+    <div class="banner-slide"><img src="images/banner-map.jpg" alt="Etihad Rail Map"></div>
+    <div class="banner-slide"><img src="images/banner-times.jpg" alt="Etihad Rail Journey Times"></div>
+  </div>
+  <div class="banner-dots">
+    <div class="banner-dot active" onclick="goSlide(0)"></div>
+    <div class="banner-dot" onclick="goSlide(1)"></div>
+  </div>
+</section>
+
+<!-- CTA Button -->
+<section class="cta-section">
+  <button class="cta-btn t" data-ar="ابدأ الخدمة" data-en="Start Service" onclick="alert(currentLang==='ar'?'جاري التحميل...':'Loading...')">ابدأ الخدمة</button>
+</section>
+
+<!-- Info Cards -->
+<section class="info-section">
+  <div class="info-cards">
+    <div class="info-card">
+      <span class="icon">🚄</span>
+      <div class="text">
+        <h4 class="t" data-ar="سرعة القطار" data-en="Train Speed">سرعة القطار</h4>
+        <p class="t" data-ar="200 كم/ساعة للركاب • 120 كم/ساعة للبضائع" data-en="200 km/h passenger • 120 km/h freight">200 كم/ساعة للركاب • 120 كم/ساعة للبضائع</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <span class="icon">🕐</span>
+      <div class="text">
+        <h4 class="t" data-ar="أبوظبي - دبي" data-en="Abu Dhabi - Dubai">أبوظبي - دبي</h4>
+        <p class="t" data-ar="57 دقيقة فقط" data-en="Only 57 minutes">57 دقيقة فقط</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <span class="icon">🛤️</span>
+      <div class="text">
+        <h4 class="t" data-ar="طول السكة الحديدية" data-en="Railway Length">طول السكة الحديدية</h4>
+        <p class="t" data-ar="1,200 كيلو متر" data-en="1,200 kilometers">1,200 كيلو متر</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>© 2026 <span class="t" data-ar="قطارات الاتحاد" data-en="Etihad Rail">قطارات الاتحاد</span> — <span class="t" data-ar="الإمارات العربية المتحدة" data-en="United Arab Emirates">الإمارات العربية المتحدة</span></p>
+</footer>
+
+<script>
+let currentLang='ar';
+let currentSlide=0;
+let autoSlideTimer;
+
+function toggleMenu(){
+  document.getElementById('menuOverlay').classList.toggle('active');
+}
+
+function toggleLang(){
+  currentLang=currentLang==='ar'?'en':'ar';
+  const html=document.documentElement;
+  html.lang=currentLang;
+  html.dir=currentLang==='ar'?'rtl':'ltr';
+  document.querySelector('.lang-text').textContent=currentLang==='ar'?'EN':'ع';
+  document.querySelectorAll('.t').forEach(el=>{
+    const txt=el.dataset[currentLang];
+    if(txt)el.textContent=txt;
+  });
+}
+
+function goSlide(n){
+  currentSlide=n;
+  document.getElementById('bannerSlider').style.transform='translateX('+(currentLang==='ar'?currentSlide*50:-(currentSlide*50))+'%)';
+  document.querySelectorAll('.banner-dot').forEach((d,i)=>d.classList.toggle('active',i===n));
+}
+
+function autoSlide(){
+  autoSlideTimer=setInterval(()=>{goSlide(currentSlide===0?1:0)},4000);
+}
+autoSlide();
+
+document.querySelector('.banner-section').addEventListener('mouseenter',()=>clearInterval(autoSlideTimer));
+document.querySelector('.banner-section').addEventListener('mouseleave',autoSlide);
+
+let touchStartX=0;
+document.querySelector('.banner-section').addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;clearInterval(autoSlideTimer)});
+document.querySelector('.banner-section').addEventListener('touchend',e=>{
+  const diff=e.changedTouches[0].clientX-touchStartX;
+  if(Math.abs(diff)>50){
+    if(currentLang==='ar'){goSlide(diff>0?0:1)}
+    else{goSlide(diff<0?0:1)}
+  }
+  autoSlide();
+});
+</script>
+</body>
+</html>
