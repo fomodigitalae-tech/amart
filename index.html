@@ -94,6 +94,40 @@ html[dir="ltr"] .info-card{border-right:none;border-left:4px solid #c8102e}
 .info-card .text h4{font-size:15px;color:#333;margin-bottom:4px}
 .info-card .text p{font-size:13px;color:#777}
 
+/* FAQ */
+.faq-section{padding:24px 20px;max-width:700px;margin:0 auto}
+.faq-title{
+  text-align:center;font-size:22px;font-weight:700;
+  color:#333;margin-bottom:20px;
+}
+.faq-card{
+  background:#fff;border-radius:10px;margin-bottom:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,.06);overflow:hidden;
+}
+.faq-question{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;cursor:pointer;gap:12px;
+}
+.faq-question span{font-size:15px;font-weight:600;color:#333;flex:1}
+.faq-toggle{
+  width:32px;height:32px;border-radius:50%;
+  background:#c8102e;color:#fff;
+  border:none;cursor:pointer;
+  font-size:20px;font-weight:700;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:.3s;
+}
+.faq-card.open .faq-toggle{transform:rotate(45deg)}
+.faq-answer{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease, padding .35s ease;
+  padding:0 20px;
+}
+.faq-card.open .faq-answer{
+  max-height:200px;padding:0 20px 16px;
+}
+.faq-answer p{font-size:14px;color:#666;line-height:1.7}
+
 /* Footer */
 .footer{
   background:#000;color:#999;
@@ -197,6 +231,87 @@ html[dir="ltr"] .info-card{border-right:none;border-left:4px solid #c8102e}
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-section">
+  <h2 class="faq-title t" data-ar="الأسئلة الشائعة" data-en="Frequently Asked Questions">الأسئلة الشائعة</h2>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="ما هو مشروع قطارات الاتحاد؟" data-en="What is the Etihad Rail project?">ما هو مشروع قطارات الاتحاد؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="قطارات الاتحاد هو مشروع السكك الحديدية الوطني في دولة الإمارات العربية المتحدة، يهدف لربط مدن الدولة بشبكة قطارات حديثة وآمنة بطول 1,200 كم." data-en="Etihad Rail is the UAE's national railway project, aiming to connect the country's cities with a modern, safe rail network spanning 1,200 km.">قطارات الاتحاد هو مشروع السكك الحديدية الوطني في دولة الإمارات العربية المتحدة، يهدف لربط مدن الدولة بشبكة قطارات حديثة وآمنة بطول 1,200 كم.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="ما هي سرعة القطار؟" data-en="What is the train speed?">ما هي سرعة القطار؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="تصل سرعة قطارات الركاب إلى 200 كم/ساعة، بينما تصل سرعة قطارات الشحن إلى 120 كم/ساعة." data-en="Passenger trains reach up to 200 km/h, while freight trains reach up to 120 km/h.">تصل سرعة قطارات الركاب إلى 200 كم/ساعة، بينما تصل سرعة قطارات الشحن إلى 120 كم/ساعة.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="كم تستغرق الرحلة من أبوظبي إلى دبي؟" data-en="How long is the trip from Abu Dhabi to Dubai?">كم تستغرق الرحلة من أبوظبي إلى دبي؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="تستغرق الرحلة من أبوظبي إلى دبي 57 دقيقة فقط بالقطار السريع." data-en="The journey from Abu Dhabi to Dubai takes only 57 minutes by express train.">تستغرق الرحلة من أبوظبي إلى دبي 57 دقيقة فقط بالقطار السريع.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="كم تستغرق الرحلة من أبوظبي إلى الفجيرة؟" data-en="How long is the trip from Abu Dhabi to Fujairah?">كم تستغرق الرحلة من أبوظبي إلى الفجيرة؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="تستغرق الرحلة من أبوظبي إلى الفجيرة حوالي 105 دقائق." data-en="The journey from Abu Dhabi to Fujairah takes about 105 minutes.">تستغرق الرحلة من أبوظبي إلى الفجيرة حوالي 105 دقائق.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="كم تستغرق الرحلة من أبوظبي إلى الرويس؟" data-en="How long is the trip from Abu Dhabi to Al Ruwais?">كم تستغرق الرحلة من أبوظبي إلى الرويس؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="تستغرق الرحلة من أبوظبي إلى الرويس حوالي 70 دقيقة." data-en="The journey from Abu Dhabi to Al Ruwais takes about 70 minutes.">تستغرق الرحلة من أبوظبي إلى الرويس حوالي 70 دقيقة.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="كيف يمكنني حجز تذكرة؟" data-en="How can I book a ticket?">كيف يمكنني حجز تذكرة؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="يمكنك حجز التذاكر عبر الموقع الرسمي أو تطبيق الهاتف المحمول أو من خلال مكاتب الحجز في المحطات." data-en="You can book tickets via the official website, mobile app, or at booking offices in the stations.">يمكنك حجز التذاكر عبر الموقع الرسمي أو تطبيق الهاتف المحمول أو من خلال مكاتب الحجز في المحطات.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="هل يوجد درجات مختلفة في القطار؟" data-en="Are there different classes on the train?">هل يوجد درجات مختلفة في القطار؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="نعم، تتوفر عدة درجات تشمل الدرجة الاقتصادية ودرجة رجال الأعمال والدرجة الأولى لتناسب جميع الاحتياجات." data-en="Yes, multiple classes are available including Economy, Business, and First Class to suit all needs.">نعم، تتوفر عدة درجات تشمل الدرجة الاقتصادية ودرجة رجال الأعمال والدرجة الأولى لتناسب جميع الاحتياجات.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="هل يمكن اصطحاب الأمتعة؟" data-en="Can I bring luggage?">هل يمكن اصطحاب الأمتعة؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="نعم، يُسمح لكل راكب بحمل أمتعة شخصية ضمن الحد المسموح به. توجد مساحات مخصصة لتخزين الأمتعة داخل القطار." data-en="Yes, each passenger can carry personal luggage within the allowed limit. Dedicated luggage storage areas are available on the train.">نعم، يُسمح لكل راكب بحمل أمتعة شخصية ضمن الحد المسموح به. توجد مساحات مخصصة لتخزين الأمتعة داخل القطار.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="هل القطار مناسب لذوي الاحتياجات الخاصة؟" data-en="Is the train accessible for people with disabilities?">هل القطار مناسب لذوي الاحتياجات الخاصة؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="نعم، تم تصميم القطارات والمحطات لتكون مهيأة بالكامل لذوي الاحتياجات الخاصة، بما في ذلك المنحدرات والمقاعد المخصصة." data-en="Yes, trains and stations are fully designed to accommodate people with disabilities, including ramps and designated seating.">نعم، تم تصميم القطارات والمحطات لتكون مهيأة بالكامل لذوي الاحتياجات الخاصة، بما في ذلك المنحدرات والمقاعد المخصصة.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="ما هي ساعات العمل؟" data-en="What are the operating hours?">ما هي ساعات العمل؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="تعمل القطارات يومياً من الساعة 6:00 صباحاً حتى 11:00 مساءً، مع رحلات كل 30 دقيقة في أوقات الذروة." data-en="Trains operate daily from 6:00 AM to 11:00 PM, with departures every 30 minutes during peak hours.">تعمل القطارات يومياً من الساعة 6:00 صباحاً حتى 11:00 مساءً، مع رحلات كل 30 دقيقة في أوقات الذروة.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="هل يتوفر واي فاي داخل القطار؟" data-en="Is Wi-Fi available on the train?">هل يتوفر واي فاي داخل القطار؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="نعم، تتوفر خدمة الواي فاي المجانية في جميع درجات القطار لراحة المسافرين." data-en="Yes, free Wi-Fi is available in all train classes for passenger comfort.">نعم، تتوفر خدمة الواي فاي المجانية في جميع درجات القطار لراحة المسافرين.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="هل يمكن إلغاء الحجز واسترداد المبلغ؟" data-en="Can I cancel my booking and get a refund?">هل يمكن إلغاء الحجز واسترداد المبلغ؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="نعم، يمكن إلغاء الحجز قبل 24 ساعة من موعد الرحلة واسترداد المبلغ كاملاً. الإلغاء بعد ذلك يخضع لرسوم إلغاء." data-en="Yes, bookings can be cancelled up to 24 hours before departure for a full refund. Later cancellations may incur fees.">نعم، يمكن إلغاء الحجز قبل 24 ساعة من موعد الرحلة واسترداد المبلغ كاملاً. الإلغاء بعد ذلك يخضع لرسوم إلغاء.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="ما هي طرق الدفع المتاحة؟" data-en="What payment methods are available?">ما هي طرق الدفع المتاحة؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="نقبل الدفع ببطاقات الائتمان والخصم، والدفع الإلكتروني عبر Apple Pay وGoogle Pay، بالإضافة إلى الدفع النقدي في المحطات." data-en="We accept credit/debit cards, Apple Pay, Google Pay, and cash payment at stations.">نقبل الدفع ببطاقات الائتمان والخصم، والدفع الإلكتروني عبر Apple Pay وGoogle Pay، بالإضافة إلى الدفع النقدي في المحطات.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="هل يُسمح بالأكل والشرب داخل القطار؟" data-en="Is eating and drinking allowed on the train?">هل يُسمح بالأكل والشرب داخل القطار؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="يُسمح بتناول المشروبات والوجبات الخفيفة. كما تتوفر عربة مخصصة لتقديم الطعام والمشروبات في الرحلات الطويلة." data-en="Light snacks and drinks are allowed. A dedicated dining car is available for food and beverages on longer journeys.">يُسمح بتناول المشروبات والوجبات الخفيفة. كما تتوفر عربة مخصصة لتقديم الطعام والمشروبات في الرحلات الطويلة.</p></div>
+  </div>
+
+  <div class="faq-card" onclick="toggleFaq(this)">
+    <div class="faq-question"><span class="t" data-ar="كيف أتواصل مع خدمة العملاء؟" data-en="How do I contact customer service?">كيف أتواصل مع خدمة العملاء؟</span><button class="faq-toggle">+</button></div>
+    <div class="faq-answer"><p class="t" data-ar="يمكنك التواصل معنا عبر الرقم المجاني 800-RAIL أو من خلال البريد الإلكتروني أو حساباتنا على وسائل التواصل الاجتماعي." data-en="You can reach us via the toll-free number 800-RAIL, by email, or through our social media accounts.">يمكنك التواصل معنا عبر الرقم المجاني 800-RAIL أو من خلال البريد الإلكتروني أو حساباتنا على وسائل التواصل الاجتماعي.</p></div>
+  </div>
+
+</section>
+
 <!-- Footer -->
 <footer class="footer">
   <div class="footer-inner">
@@ -244,6 +359,11 @@ html[dir="ltr"] .info-card{border-right:none;border-left:4px solid #c8102e}
 let currentLang='ar';
 function toggleMenu(){
   document.getElementById('menuOverlay').classList.toggle('active');
+}
+
+function toggleFaq(card){
+  document.querySelectorAll('.faq-card').forEach(c=>{if(c!==card)c.classList.remove('open')});
+  card.classList.toggle('open');
 }
 
 function toggleLang(){
